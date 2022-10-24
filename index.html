@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" type="text/css" href="./style.css">
+    <title>Report - 202209</title>
+  </head>
+  <body>
+    <div id="app">
+      <div class="parent">
+        <!-- グリッドエリア -->
+        <div class="accordion table-area">
+          <input id="table-area" type="checkbox" class="toggle">
+          <label for="table-area">グリッドシステム</label>
+            <div class="content">
+              <p>
+                CSSでグリッドの縦横サイズを指定して表レイアウトを作成。
+              </p>
+              <p>
+                ◆実装経緯：データ表示部のグリッド化のため<br>
+                （既存でグリッドシステムを使用していたため、表示領域を追加・拡張）
+              </p>
+              <p>
+                ◆改善点等：グリッドサイズの指定方法<br>
+                業務で実装したものは15行*4カラム以上のグリッドレイアウトだったため1行単位で行幅をピクセル指定したが、グリッド全体の列幅修正が入った際に修正し辛くなってしまった。<br>
+                元のレイアウトや修正内容にもよるがグリッド線や相対値による指定も考慮出来ると柔軟に実装しやすいと感じた。
+              </p>
+              <div class="grid-data">
+                <div class="grid-header grid-content">
+                  <p>HEADER</p>
+                </div>
+                <div class="grid-content grid-red">
+                  <p>RED</p>
+                </div>
+                <div class="grid-content grid-blue">
+                  <p>BLUE</p>
+                </div>
+                <div class="grid-content grid-yellow">
+                  <p>YELLOW</p>
+                </div>
+                <div class="grid-content grid-green">
+                  <p>GREEN</p>
+                </div>
+                <div class="grid-content grid-dark">
+                  <p>PURPLE</p>
+                </div>        
+              </div>
+            </div>
+        </div>
+        <!-- モーダルエリア -->
+        <div class="accordion modal-area">
+          <input id="modal-area" type="checkbox" class="toggle">
+          <label for="modal-area">モーダル</label>
+          <div class="content">
+            <p>
+              javascriptやVue.jsのtemplateを用いて実装。<br>
+              （今回はjQueryのみで実装）
+            </p>
+            <p>
+              ◆実装経緯：メッセージ表示、条件付きデータ入力を補助するため
+            </p>
+            <p>
+              ◆改善点等：使用用途と閉じるボタン<br>
+              データ入力モーダルの場合は必ず閉じるボタンを押下するまでは閉じない仕様にするべきだと感じた。<br>
+              （業務システムではないが、某webシステム利用時に誤って閉じてしまったため…）<br>
+              逆に重要ではないメッセージ表示を行うモーダルについては表示エリア外クリックなどで閉じても良いと感じた。
+            </p>
+            <button class="button modal-open is-info">モーダルを表示</button>
+          </div>
+        </div>
+        <!-- アコーディオンエリア -->
+        <div class="accordion accordion-area">
+          <input id="accordion-area" type="checkbox" class="toggle">
+          <label for="accordion-area">アコーディオン</label>
+          <div class="content">
+            <p>
+              表示・非表示切り替え、アイコン回転等をcssで制御している。
+            </p>
+            <p class="scroll-white">
+              (後述のスクロール機能動作確認のため余白を追加しています)
+            </p>
+            <p>
+              ◆実装経緯：検索画面など、データ表示部が多い画面のレイアウト整理のため
+            </p>
+            <p>
+              ◆改善点等：レスポンシブデザインへの考慮<br>
+              スマホ等小さい画面で操作する場合、アコーディオン内部のコンテンツ量によっては大変見辛くなってしまう。<br>
+              PC・スマホ両対応にする場合は注意する必要があると感じた。
+            </p>
+          </div>
+        </div>      
+        <div class="accordion scroll-area">
+          <input id="scroll-area" type="checkbox" class="toggle">
+          <label for="scroll-area">自動スクロール処理</label>
+          <div class="content">
+            <p>
+              検索処理後のアコーディオン開閉等と併せて実装した。<br>
+              実際のプログラムではスクロール対象のクラス指定に加えて数値指定を行った。
+            </p>
+            <p>
+              ◆実装経緯：ユーザー操作タイミングに合わせて同一画面内での表示を切り替えるため<br>
+              (アコーディオンに伴う実装)
+            </p>
+            <p>
+              ◆改善点等：レスポンシブデザインへの考慮<br>
+              ピクセル指定でスクロールすると、画面解像度やサイズによっては想定していない場所まで移動することがある。<br>
+              特に問題が無ければ要素指定を利用すべきだと感じた。
+            </p>
+            <button class="button scroll-button is-info">「グリッドシステム」までスクロール</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- モーダル -->
+    <div class="modal-container">
+      <div class="modal-body">
+        <p>モーダルコンテンツです。</p>
+        <p>枠外をクリックすると閉じます。</p>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script src="./script.js"></script>
+  </body>
+</html>
